@@ -41,4 +41,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Contact
 - **mail**: putturudivakarreddy@gmail.com.
-- **Project Link**: 
+- **Project Link**: https://github.com/putturudivakar/next.js.git.
