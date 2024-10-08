@@ -3,11 +3,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm {
-                    class: 'hudson.plugins.git.GitSCMSource'
-                    url: 'https://github.com/Devops8297/next.js.git' // Replace with your actual repository URL
-                    branches: [[$class: 'hudson.plugins.git.BranchSpec', name: '*']]
-                }
+                git branch: 'main', // Replace with your desired branch
+                   url: 'https://github.com/Devops8297/next.js.git'
             }
         }
         stage('Install Dependencies') {
