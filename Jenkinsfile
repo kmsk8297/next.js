@@ -1,11 +1,5 @@
 pipeline {
-    agent {
-        // Use a Node.js Docker image for Jenkins
-        docker {
-            image 'node:16-alpine' // Choose the appropriate Node.js version
-            args '-u root' // Run as root to install dependencies
-        }
-    }
+    agent any
 
     stages {
         stage('Checkout Code') {
