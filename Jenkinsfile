@@ -1,5 +1,5 @@
 pipeline {
-    agent any // Use any available agent
+    agent any // This allows Jenkins to use any available executor
 
     stages {
         stage('Checkout Code') {
@@ -10,19 +10,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install' // Install dependencies
+                sh 'npm install' // Assuming npm is installed globally on your Jenkins server
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'npm test' // Run tests
+                sh 'npm test' // Assuming your tests are defined in package.json
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build' // Build the application
+                sh 'npm run build' // This should build your Next.js application
             }
         }
 
