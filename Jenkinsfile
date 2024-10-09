@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:21-alpine' // Use the appropriate Node.js version
-            args '-u root:root' // Run as root to install dependencies
-        }
-    }
+    agent any // Use any available agent
 
     stages {
         stage('Checkout Code') {
@@ -15,19 +10,19 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh 'npm install' // Install dependencies
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                sh 'npm test' // Run tests
             }
         }
 
         stage('Build') {
             steps {
-                sh 'npm run build'
+                sh 'npm run build' // Build the application
             }
         }
 
