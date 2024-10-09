@@ -1,9 +1,8 @@
 pipeline {
     agent {
-        // Use a Node.js Docker image for Jenkins
         docker {
-            image 'node:21-alpine' // Choose the appropriate Node.js version
-            args '-u root' // Run as root to install dependencies
+            image 'node:21-alpine' // Use the appropriate Node.js version
+            args '-u root:root' // Run as root to install dependencies
         }
     }
 
@@ -35,6 +34,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the application...'
+                // Add your deployment steps here
             }
         }
     }
