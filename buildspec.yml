@@ -14,13 +14,8 @@ phases:
   post_build:
     commands:
       - echo Build completed successfully.
-      - echo Preparing files for deployment...
-      - zip -r ../app.zip . # Create a zip file for deployment
 
 artifacts:
   files:
-    - app.zip
-
-cache:
-  paths:
-    - node_modules/**/*
+    - '**/*'  # Include all files from the project
+  base-directory: .next # Specify the correct output directory for Next.js build
