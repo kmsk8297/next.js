@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo Installing dependencies...
+      - npm install
+
+  build:
+    commands:
+      - echo Building the Next.js application...
+      - npm run build
+
+  post_build:
+    commands:
+      - echo Build completed successfully.
+      - echo Preparing files for deployment...
+      - zip -r ../app.zip . # Create a zip file for deployment
+
+artifacts:
+  files:
+    - app.zip
+
+cache:
+  paths:
+    - node_modules/**/*
