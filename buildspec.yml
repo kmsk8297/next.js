@@ -6,24 +6,32 @@ env:
     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
 
-install:
-  commands:
-    - echo "Manually installing Node.js..."
-    - curl -fsSL https://deb.nodesource.com/setup_21.x | bash -
-    - apt-get install -y nodejs
-    - node -v  # Verify version
-    - echo "Installing dependencies..."
-    - npm install
+phases:
   pre_build:
     commands:
       - echo "Logging in to Docker registry..."
       - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+      
+      - echo "Cloning the repository..."
+      - git clone https://github.com/Devops8297/next.js.git
+      - cd next.js
+
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - npm install
+      
   build:
     commands:
+      - echo "Building the Next.js application..."
+      - npm run build
+      
       - echo "Building Docker image..."
       - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/nextjs-app:latest" .
+      
       - echo "Pushing Docker image..."
       - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/nextjs-app:latest"
+
   post_build:
     commands:
       - echo "Build and push completed successfully!"
