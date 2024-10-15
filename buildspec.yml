@@ -6,13 +6,14 @@ env:
     DOCKER_REGISTRY_PASSWORD: /myapp/docker-credentials/password
     DOCKER_REGISTRY_URL: /myapp/docker-registry/url
 
-phases:
-  install:
-    runtime-versions:
-      nodejs: 21
-    commands:
-      - echo "Installing dependencies..."
-      - npm install
+install:
+  commands:
+    - echo "Manually installing Node.js..."
+    - curl -fsSL https://deb.nodesource.com/setup_21.x | bash -
+    - apt-get install -y nodejs
+    - node -v  # Verify version
+    - echo "Installing dependencies..."
+    - npm install
   pre_build:
     commands:
       - echo "Logging in to Docker registry..."
