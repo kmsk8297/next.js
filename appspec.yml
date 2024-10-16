@@ -1,24 +1,17 @@
 version: 0.0
 os: linux
-files:
-  - source: .next
-    destination: /var/www/my-nextjs-app/.next
 
-  - source: package.json
-    destination: /var/www/my-nextjs-app
-  - source: package-lock.json
-    destination: /var/www/my-nextjs-app
-  - source: public
-    destination: /var/www/my-nextjs-app/public
-  - source: pages
-    destination: /var/www/my-nextjs-app/pages
+files:
+  - source: scripts
+    destination: /opt/scripts
 
 hooks:
   AfterInstall:
-    - location: scripts/install_dependencies.sh
+    - location: /opt/scripts/install_docker.sh
       timeout: 300
       runas: root
+
   ApplicationStart:
-    - location: scripts/start_server.sh
+    - location: /opt/scripts/start_docker.sh
       timeout: 300
       runas: root
